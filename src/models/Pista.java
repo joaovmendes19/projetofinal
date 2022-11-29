@@ -1,4 +1,8 @@
 package models;
+
+import java.sql.PreparedStatement;
+import DAO.DAO;
+
 public class Pista {
     private int id;
     private String numero;
@@ -6,12 +10,23 @@ public class Pista {
     public Pista(){
 
     }
-    public Pista(int id, String numero){
+    public Pista(int id, String numero) throws Exception {
         this.id=id;
         this.numero=numero;
+
+        PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO pista (ID_PISTA, NUMERO) VALUES (?, ?);");
+        prep.setInt(1, id);
+        prep.setString(2, numero);
+        prep.execute();
+        prep.close();
     }
-    public Pista(String numero){
+    public Pista(String numero) throws Exception {
         this.numero=numero;
+
+        PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO pista (NUMERO) VALUES (?);");
+        prep.setString(2, numero);
+        prep.execute();
+        prep.close();
     }
     public int getId(){
         return id;
