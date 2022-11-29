@@ -1,3 +1,4 @@
+package models;
 public class Voo {
     private int id;
     private String numero;

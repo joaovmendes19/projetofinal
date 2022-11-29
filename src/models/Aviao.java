@@ -1,3 +1,4 @@
+package models;
 public class Aviao extends Aeronave{
 
         private String prefixo;

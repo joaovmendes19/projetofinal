@@ -1,3 +1,4 @@
+package models;
 public class Pista {
     private int id;
     private String numero;

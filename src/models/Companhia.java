@@ -1,3 +1,4 @@
+package models;
 public class Companhia {
       private int id;
       private   String nome;
