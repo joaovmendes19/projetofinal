@@ -30,7 +30,9 @@ public class Helicoptero extends Aeronave{
     public void setCapacidade(int capacidade) {
         this.capacidade=capacidade;
     }
-    
-
+    public String toString() {
+        return super.toString() + "Cor: " + this.getCor() + ", Capacidade: " + this.getCapacidade();
+    }
+     
 
 }

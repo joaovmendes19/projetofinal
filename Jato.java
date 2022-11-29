@@ -30,6 +30,10 @@ public class Jato extends Aeronave{
     public void setVelocidade(int velocidade) {
         this.velocidade=velocidade;
     }
+    @Override
+    public String toString() {
+       return "cor=" + this.getCor() + "velocidade" + this.getVelocidade();
+    }
     
 
 

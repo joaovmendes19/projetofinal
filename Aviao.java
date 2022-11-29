@@ -1,38 +1,57 @@
 public class Aviao extends Aeronave{
 
-        private String cor;
+        private String prefixo;
         private int capacidade;
-        private String 
+        private int idCompanhia;
+        private Companhia companhia;
+
     
         public Aviao(){
     
         }
-        public Aviao(int id,String marca, String modelo, String cor, int capacidade) {
+        public Aviao(int id,String marca, String modelo, String prefixo, int capacidade, int idCompanhia) {
             super( id, marca,  modelo);
-            this.cor=cor;
+            this.prefixo=prefixo;
             this.capacidade=capacidade;
+            this.idCompanhia=idCompanhia;
         }
-        public Aviao(String marca, String modelo, String cor, int capacidade){
+        public Aviao(String marca, String modelo, String prefixo, int capacidade, int idCompanhia){
             super( marca,  modelo);
-            this.cor=cor;
+            this.prefixo=prefixo;
             this.capacidade=capacidade;
+            this.idCompanhia=idCompanhia;
     
         }
     
-        public String getCor(){
-            return this.cor;
+        public String getPrefixo(){
+            return this.prefixo;
         }
-        public void setCor(String cor) {
-            this.cor=cor;
+        public void setPrefixo(String prefixo) {
+            this.prefixo=prefixo;
         }
         public int getCapacidade(){
             return this.capacidade;
         }
         public void setCapacidade(int capacidade) {
-            this.capacidade=capacidade;
+            this.capacidade=capacidade;         
         }
-        
-    
+        public int getIdCompanhia(){
+            return idCompanhia;
+
+        }
+        public void setIdCompanhia(int idCompanhia){
+            this.idCompanhia=idCompanhia;
+        }
+        public Companhia getCompanhia(){
+            return companhia;
+        }
+        public void setCompanhia(Companhia companhia){
+            this.companhia=companhia;
+
+        }
+        public String toString(){
+            return super.toString() + "Prefixo: " + this.getPrefixo() + "Capacidade: " + this.getCapacidade() + "IdCompanhia: " + this.getIdCompanhia();
+        }
     
     }
     
