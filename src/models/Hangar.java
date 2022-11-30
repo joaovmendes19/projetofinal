@@ -1,4 +1,9 @@
 package models;
+
+import java.sql.PreparedStatement;
+
+import DAO.DAO;
+
 public class Hangar {
     private int id;
     private String local;
@@ -8,10 +13,17 @@ public class Hangar {
     public Hangar(){
 
     }
-    public Hangar(int id, String local, int idAviao){
+    public Hangar(int id, String local, int idAviao) throws Exception {
         this.id=id;
         this.local=local;
         this.idAviao=idAviao;
+
+        PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO hangar (id_hangar, local, id_aviao) VALUES (?, ?, ?);");
+        prep.setInt(1, id); 
+        prep.setString(2, local);
+        prep.setInt(3, idAviao);
+        prep.execute();
+        prep.close();
 
     }
     public Hangar (String local, int idAviao){

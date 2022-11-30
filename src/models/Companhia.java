@@ -1,4 +1,9 @@
 package models;
+
+import java.sql.PreparedStatement;
+
+import DAO.DAO;
+
 public class Companhia {
       private int id;
       private   String nome;
@@ -7,10 +12,17 @@ public class Companhia {
       public Companhia(){
 
       }
-    public Companhia(int id, String nome, String cnpj){
+    public Companhia(int id, String nome, String cnpj)throws Exception{
         this.id=id;
         this.nome=nome;
         this.cnpj=cnpj;
+
+        PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO companhia (id_companhia, nome, cnpj) VALUES (?, ?, ?);");
+        prep.setInt(1, id);
+        prep.setString(2, nome);
+        prep.setString(3, cnpj);
+        prep.execute();
+        prep.close();
     }
 
     public Companhia (String nome, String cnpj){

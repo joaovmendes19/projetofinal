@@ -1,4 +1,9 @@
 package models;
+
+import java.sql.PreparedStatement;
+
+import DAO.DAO;
+
 public class Helicoptero extends Aeronave{
 
     private String cor;
@@ -7,10 +12,19 @@ public class Helicoptero extends Aeronave{
     public Helicoptero(){
 
     }
-    public Helicoptero(int id,String marca, String modelo, String cor, int capacidade) {
+    public Helicoptero(int id,String marca, String modelo, String cor, int capacidade) throws Exception {
         super( id, marca,  modelo);
         this.cor=cor;
         this.capacidade=capacidade;
+
+        PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO helicoptero (id_helicoptero, marca, modelo, cor, capacidade) VALUES (?, ?, ?, ?, ?);");
+        prep.setInt(1, id);
+        prep.setString(2, marca);
+        prep.setString(3, modelo);
+        prep.setString(4, cor);
+        prep.setInt(5, capacidade);
+        prep.execute();
+        prep.close();
     }
     public Helicoptero(String marca, String modelo, String cor, int capacidade){
         super( marca,  modelo);

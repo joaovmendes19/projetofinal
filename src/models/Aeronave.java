@@ -1,4 +1,5 @@
 package models;
+
 public class Aeronave{
     private int id;
     private String marca;
@@ -7,10 +8,11 @@ public class Aeronave{
     Aeronave(){
 
     }
-    Aeronave(int id, String marca, String modelo){
+    Aeronave(int id, String marca, String modelo) throws Exception{
         this.id=id;
         this.marca=marca;
         this.modelo=modelo;
+        
     }
     Aeronave(String marca, String modelo){
         this.marca=marca;

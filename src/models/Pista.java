@@ -14,7 +14,7 @@ public class Pista {
         this.id=id;
         this.numero=numero;
 
-        PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO pista (ID_PISTA, NUMERO) VALUES (?, ?);");
+        PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO pista (id_pista, numero) VALUES (?, ?);");
         prep.setInt(1, id);
         prep.setString(2, numero);
         prep.execute();

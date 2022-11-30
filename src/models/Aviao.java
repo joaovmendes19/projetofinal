@@ -1,4 +1,9 @@
 package models;
+
+import java.sql.PreparedStatement;
+import DAO.DAO;
+import com.mysql.cj.xdevapi.PreparableStatement;
+
 public class Aviao extends Aeronave{
 
         private String prefixo;
@@ -10,11 +15,22 @@ public class Aviao extends Aeronave{
         public Aviao(){
     
         }
-        public Aviao(int id,String marca, String modelo, String prefixo, int capacidade, int idCompanhia) {
+        public Aviao(int id,String marca, String modelo, String prefixo, int capacidade, int idCompanhia) throws Exception{
             super( id, marca,  modelo);
             this.prefixo=prefixo;
             this.capacidade=capacidade;
             this.idCompanhia=idCompanhia;
+
+            PreparedStatement prep = DAO.createConnection().prepareStatement("INSERT INTO aviao (id_aviao, marca, modelo, prefixo, capacidade, id_companhia) VALUES (?, ?, ?, ?, ?, ?);");
+            prep.setInt(1, id);
+            prep.setString(2, marca);
+            prep.setString(3, modelo);
+            prep.setString(4, prefixo);
+            prep.setInt(5, capacidade);
+            prep.setInt(6, idCompanhia);
+            prep.execute();
+            prep.close();
+
         }
         public Aviao(String marca, String modelo, String prefixo, int capacidade, int idCompanhia){
             super( marca,  modelo);
