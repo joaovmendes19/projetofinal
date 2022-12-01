@@ -14,7 +14,7 @@ public class Aeronave{
         this.modelo=modelo;
         
     }
-    Aeronave(String marca, String modelo){
+    public Aeronave(String marca, String modelo){
         this.marca=marca;
         this.modelo=modelo;
     }
