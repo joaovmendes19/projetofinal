@@ -1,32 +1,24 @@
 package models;
-
 import java.sql.PreparedStatement;
 import DAO.DAO;
 
 public class Pista {
     private int id;
-    private String numero;
+    private String numeroS;
+    private int numeroI;
 
     public Pista(){
 
     }
-    public Pista(int id, String numero) throws Exception {
+    public Pista(int id, String numeroS, int numeroI) throws Exception {
         this.id=id;
-        this.numero=numero;
+        this.numeroS=numeroS;
+        this.numeroI=numeroI;
 
-        PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO pista (id_pista, numero) VALUES (?, ?);");
-        prep.setInt(1, id);
-        prep.setString(2, numero);
-        prep.execute();
-        prep.close();
     }
-    public Pista(String numero) throws Exception {
-        this.numero=numero;
-
-        PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO pista (NUMERO) VALUES (?);");
-        prep.setString(2, numero);
-        prep.execute();
-        prep.close();
+    public Pista(String numeroS, int numeroI) throws Exception {
+        this.numeroS=numeroS;
+        this.numeroI=numeroI;
     }
     public int getId(){
         return id;
@@ -34,16 +26,22 @@ public class Pista {
     public void setId(int id){
         this.id=id;
     }
-    public String getNumero(){
-        return numero;
+    public String getNumeroS(){
+        return numeroS;
     }
-    public void setNumero(String numero){
-        this.numero=numero;
+    public void setNumeroS(String numeroS){
+        this.numeroS=numeroS;
+    }
+    public int getNumeroI(){
+        return numeroI;
+    }
+    public void setNumeroI(int numeroI){
+        this.numeroI= numeroI;
     }
     @Override
     public String toString() {
         
-        return "Numero da pista: " + numero;
+        return "Numero da pista: " + numeroS + numeroI;
     }
     @Override
     public boolean equals(Object obj) {
@@ -59,4 +57,43 @@ public class Pista {
         }
         return true;  
     }
+
+    public void insert(){
+        try{
+            PreparedStatement prep  = DAO.createConnection().prepareStatement("INSERT INTO pista (numeroS, numeroI) VALUES (?, ?);");
+            
+            prep.setString(1, getNumeroS());
+            prep.setInt(2, getNumeroI());
+            prep.execute();
+            prep.close();
+        }catch(Exception e){
+            System.out.println("Erro ao inserir pista");
+        }
+    }
+    public void update(){
+        try{
+            PreparedStatement prep  = DAO.createConnection().prepareStatement("UPDATE pista SET numeroS = ?, numeroI = ? WHERE id = ?;");
+            prep.setString(1, getNumeroS());
+            prep.setInt(2, getNumeroI());
+            prep.setInt(3, getId());
+            prep.execute();
+            prep.close();
+        }catch(Exception e){
+            System.out.println("Erro ao atualizar pista");
+        }
+    }
+    public static void delete(int id){
+        try{
+            PreparedStatement prep  = DAO.createConnection().prepareStatement("DELETE FROM pista WHERE id = ?;");
+            prep.setInt(1, id);
+            prep.execute();
+            prep.close();
+        }catch(Exception e){
+            System.out.println("Erro ao deletar pista");
+        }
+    }
+
+    public static Pista getById(int id){
+        return new Pista();
+        }
 }
